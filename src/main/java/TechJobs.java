@@ -120,12 +120,12 @@ public class TechJobs {
 
         for (int i=0; i<someJobs.size(); i++) {
             for (Map<String, String> job : someJobs) {
-                System.out.println("*****");
+                System.out.println("\n*****");
                 for (String key : job.keySet()) {
                     String value = job.get(key);
                     System.out.println(key + ": " + value);
                 }
-                System.out.println("*****\n");
+                System.out.println("*****");
             }
         }
 
