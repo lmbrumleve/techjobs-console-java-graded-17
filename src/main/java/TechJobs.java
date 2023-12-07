@@ -7,7 +7,7 @@ import java.util.*;
 public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
-
+    static boolean noResults = false;
     public static void main (String[] args) {
 
         // Initialize our field map with key/name pairs
@@ -54,15 +54,22 @@ public class TechJobs {
 
                 // How does the user want to search (e.g. by skill or employer)
                 String searchField = getUserSelection("Search by:", columnChoices);
-
+//                System.out.println(searchField);
                 // What is their search term?
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
+//                System.out.println(searchTerm);
+//                System.out.println(JobData.findAll(searchField));
+//                System.out.println(JobData.findByColumnAndValue(searchField, searchTerm));
 
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
+                } else if (!JobData.findAll(searchField).contains(searchTerm)) {
+                    System.out.println("No Results");
+                    noResults = true;
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+//                    System.out.println(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
             }
         }
@@ -84,9 +91,12 @@ public class TechJobs {
         }
 
         do {
-
-            System.out.println("\n" + menuHeader);
-
+            if(noResults) {
+                System.out.println(menuHeader);
+                noResults = false;
+            } else {
+                System.out.println("\n" + menuHeader);
+            }
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
                 System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
@@ -117,7 +127,6 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
         for (int i=0; i<someJobs.size(); i++) {
             for (Map<String, String> job : someJobs) {
                 System.out.println("\n*****");
