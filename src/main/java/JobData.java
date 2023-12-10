@@ -95,7 +95,24 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> jobsByValue = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+//            System.out.println(row);
+            ArrayList<String> allValues = new ArrayList<String>(row.values());
+//            System.out.println(allValues);
+            for (int i = 0; i < allValues.size(); i++) {
+//                System.out.println(allValues.get(i));
+                if (allValues.get(i).contains(value) && !jobsByValue.contains(row)) {
+                    jobsByValue.add(row);
+//                    System.out.println(jobsByValue);
+                }
+            }
+        }
+//        System.out.println(0);
+//        System.out.println(jobsByValue);
+//        System.out.println(1);
+        return jobsByValue;
     }
 
     /**
