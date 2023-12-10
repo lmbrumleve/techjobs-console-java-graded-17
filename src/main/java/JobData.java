@@ -38,7 +38,7 @@ public class JobData {
             String aValue = row.get(field);
 
             if (!values.contains(aValue)) {
-                values.add(aValue);
+                values.add(aValue.toLowerCase());
             }
         }
 
@@ -49,6 +49,7 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+
 
         return allJobs;
     }
@@ -75,7 +76,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -103,7 +104,7 @@ public class JobData {
 //            System.out.println(allValues);
             for (int i = 0; i < allValues.size(); i++) {
 //                System.out.println(allValues.get(i));
-                if (allValues.get(i).contains(value) && !jobsByValue.contains(row)) {
+                if (allValues.get(i).toLowerCase().contains(value.toLowerCase()) && !jobsByValue.contains(row)) {
                     jobsByValue.add(row);
 //                    System.out.println(jobsByValue);
                 }

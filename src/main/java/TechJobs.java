@@ -65,7 +65,7 @@ public class TechJobs {
                 if (searchField.equals("all")) {
 //                    System.out.println(JobData.findByValue(searchTerm));
                     printJobs(JobData.findByValue(searchTerm));
-                } else if (!JobData.findAll(searchField).contains(searchTerm)) {
+                } else if (!JobData.findAll(searchField).contains(searchTerm.toLowerCase())) {
                     System.out.println("No Results");
                     noResults = true;
                 } else {
